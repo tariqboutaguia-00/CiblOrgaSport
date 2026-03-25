@@ -237,3 +237,20 @@ Permettre l’enregistrement des résultats des participants aux épreuves.
 
 ### Résultat
 Gestion des résultats disponible via l’API
+
+## Étape 16
+
+### Objectif
+Permettre la gestion des incidents liés aux épreuves.
+
+### Actions
+- création de l’entité Incident
+- ajout de la migration SQL pour la table incidents
+- création du repository IncidentRepository
+- création des DTO de création et de réponse
+- création du service IncidentService
+- création du controller IncidentController
+- ajout de la relation entre Incident et Event
+
+### Résultat
+Gestion de base des incidents disponible via l’API

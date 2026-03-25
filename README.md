@@ -132,6 +132,8 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/participants` : inscrire un athlète à une épreuve
 - `GET /api/results` : récupérer la liste des résultats
 - `POST /api/results` : enregistrer un résultat pour un participant
+- `GET /api/incidents` : récupérer la liste des incidents
+- `POST /api/incidents` : déclarer un incident
 
 ## Données initiales
 
