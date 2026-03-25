@@ -37,3 +37,19 @@ Créer la base du backend Spring Boot avec les dépendances nécessaires au proj
 
 ### Résultat
 Backend Spring Boot initialisé et prêt pour la configuration
+
+## Étape 3
+
+### Objectif
+Nettoyer la configuration du backend et préparer la connexion à PostgreSQL.
+
+### Actions
+- suppression du fichier HELP.md
+- configuration de Spring Boot dans application.yaml
+- ajout de la configuration datasource, JPA, Flyway et Actuator
+- création du dossier de migration Flyway
+- ajout de la première migration SQL
+- préparation des packages métier du backend
+
+### Résultat
+Configuration du backend structurée et prête pour la mise en place de la base de données
