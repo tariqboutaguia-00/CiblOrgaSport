@@ -220,3 +220,20 @@ Permettre l’inscription d’un athlète à une épreuve.
 
 ### Résultat
 Gestion de l’inscription des athlètes aux épreuves disponible via l’API
+
+## Étape 15
+
+### Objectif
+Permettre l’enregistrement des résultats des participants aux épreuves.
+
+### Actions
+- création de l’entité Result
+- ajout de la migration SQL pour la table results
+- création du repository ResultRepository
+- création des DTO de création et de réponse
+- création du service ResultService
+- création du controller ResultController
+- ajout de la relation entre Result et Participant
+
+### Résultat
+Gestion des résultats disponible via l’API

@@ -130,6 +130,8 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/athletes` : créer un profil athlète
 - `GET /api/participants` : récupérer la liste des participants
 - `POST /api/participants` : inscrire un athlète à une épreuve
+- `GET /api/results` : récupérer la liste des résultats
+- `POST /api/results` : enregistrer un résultat pour un participant
 
 ## Données initiales
 
