@@ -110,6 +110,36 @@ Le projet intégrera des tests pour vérifier les fonctionnalités principales, 
 - gestion des participations
 - gestion des résultats
 
+Les premiers tests unitaires ont été ajoutés pour le module utilisateur et l’authentification.
+
+## Endpoints implémentés
+
+Le backend expose actuellement les endpoints suivants :
+
+- `GET /api/users` : récupérer la liste des utilisateurs  
+- `POST /api/users` : créer un utilisateur
+
+Les mots de passe des utilisateurs sont maintenant stockés de manière sécurisée dans la base de données.
+
+- `POST /api/auth/login` : authentifier un utilisateur avec email et mot de passe
+- `GET /api/competitions` : récupérer la liste des compétitions
+- `POST /api/competitions` : créer une compétition
+- `GET /api/events` : récupérer la liste des épreuves
+- `POST /api/events` : créer une épreuve
+- `GET /api/athletes` : récupérer la liste des athlètes
+- `POST /api/athletes` : créer un profil athlète
+- `GET /api/participants` : récupérer la liste des participants
+- `POST /api/participants` : inscrire un athlète à une épreuve
+
+## Données initiales
+
+Au démarrage de l’application, un compte administrateur est créé automatiquement si aucun administrateur n’existe.
+
+```text
+Email : admin@ciblorgasport.com
+Mot de passe : admin123
+```
+
 ## Statut
 
-Initialisation du projet en cours.
+Développement du backend en cours.
