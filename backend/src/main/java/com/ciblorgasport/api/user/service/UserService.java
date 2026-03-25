@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.user.service;
 
+import com.ciblorgasport.api.user.dto.CreateUserRequest;
 import com.ciblorgasport.api.user.dto.UserResponse;
 import com.ciblorgasport.api.user.entity.User;
 import com.ciblorgasport.api.user.repository.UserRepository;
@@ -20,6 +21,23 @@ public class UserService {
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
+    }
+
+    public UserResponse createUser(CreateUserRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        User user = new User();
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+        user.setEnabled(true);
+
+        User savedUser = userRepository.save(user);
+        return mapToResponse(savedUser);
     }
 
     private UserResponse mapToResponse(User user) {
