@@ -2,6 +2,7 @@ package com.ciblorgasport.api.result.service;
 
 import com.ciblorgasport.api.participant.entity.Participant;
 import com.ciblorgasport.api.participant.repository.ParticipantRepository;
+import com.ciblorgasport.api.result.dto.AthletePerformanceResponse;
 import com.ciblorgasport.api.result.dto.CreateResultRequest;
 import com.ciblorgasport.api.result.dto.ResultResponse;
 import com.ciblorgasport.api.result.entity.Result;
@@ -46,6 +47,20 @@ public class ResultService {
         return mapToResponse(savedResult);
     }
 
+    public List<AthletePerformanceResponse> getAthletePerformances(Long athleteId) {
+        return resultRepository.findByParticipantAthleteId(athleteId)
+                .stream()
+                .map(this::mapToAthletePerformance)
+                .toList();
+    }
+
+    public List<AthletePerformanceResponse> getAllPerformances() {
+        return resultRepository.findAll()
+                .stream()
+                .map(this::mapToAthletePerformance)
+                .toList();
+    }
+
     private ResultResponse mapToResponse(Result result) {
         String athleteName = result.getParticipant().getAthlete().getUser().getFirstName() + " "
                 + result.getParticipant().getAthlete().getUser().getLastName();
@@ -53,6 +68,21 @@ public class ResultService {
         return new ResultResponse(
                 result.getId(),
                 result.getParticipant().getId(),
+                athleteName,
+                result.getParticipant().getEvent().getName(),
+                result.getRankPosition(),
+                result.getResultTime(),
+                result.getMedal(),
+                result.isValidated());
+    }
+
+    private AthletePerformanceResponse mapToAthletePerformance(Result result) {
+        String athleteName = result.getParticipant().getAthlete().getUser().getFirstName() + " "
+                + result.getParticipant().getAthlete().getUser().getLastName();
+
+        return new AthletePerformanceResponse(
+                result.getId(),
+                result.getParticipant().getAthlete().getId(),
                 athleteName,
                 result.getParticipant().getEvent().getName(),
                 result.getRankPosition(),

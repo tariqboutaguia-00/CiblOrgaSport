@@ -142,6 +142,10 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/missions` : créer une mission
 - `POST /api/missions/{missionId}/assign/{volunteerId}` : affecter un volontaire à une mission
 - `GET /api/statistics` : récupérer un résumé statistique de l’application
+- `PATCH /api/athletes/{athleteId}/charter` : accepter ou refuser la charte européenne
+- `PATCH /api/participants/{participantId}/withdraw` : déclarer forfait
+- `GET /api/results/athlete/{athleteId}` : consulter les performances d’un athlète
+- `GET /api/results/performances` : consulter toutes les performances
 
 ## Format des réponses API
 

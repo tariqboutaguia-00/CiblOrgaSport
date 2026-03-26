@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.participant.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.participant.dto.CreateParticipantRequest;
 import com.ciblorgasport.api.participant.dto.ParticipantResponse;
 import com.ciblorgasport.api.participant.service.ParticipantService;
@@ -19,13 +20,20 @@ public class ParticipantController {
     }
 
     @GetMapping
-    public List<ParticipantResponse> getAllParticipants() {
-        return participantService.getAllParticipants();
+    public ApiResponse<List<ParticipantResponse>> getAllParticipants() {
+        return ApiResponse.success("Participants retrieved successfully", participantService.getAllParticipants());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ParticipantResponse createParticipant(@Valid @RequestBody CreateParticipantRequest request) {
-        return participantService.createParticipant(request);
+    public ApiResponse<ParticipantResponse> createParticipant(@Valid @RequestBody CreateParticipantRequest request) {
+        return ApiResponse.success("Participant created successfully", participantService.createParticipant(request));
+    }
+
+    @PatchMapping("/{participantId}/withdraw")
+    public ApiResponse<ParticipantResponse> withdrawParticipant(@PathVariable Long participantId) {
+        return ApiResponse.success(
+                "Participant withdrawn successfully",
+                participantService.withdrawParticipant(participantId));
     }
 }

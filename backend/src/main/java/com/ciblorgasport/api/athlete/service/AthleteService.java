@@ -46,6 +46,16 @@ public class AthleteService {
         return mapToResponse(savedAthlete);
     }
 
+    public AthleteResponse updateCharter(Long athleteId, boolean charterAccepted) {
+        Athlete athlete = athleteRepository.findById(athleteId)
+                .orElseThrow(() -> new RuntimeException("Athlete not found"));
+
+        athlete.setCharterAccepted(charterAccepted);
+        Athlete savedAthlete = athleteRepository.save(athlete);
+
+        return mapToResponse(savedAthlete);
+    }
+
     private AthleteResponse mapToResponse(Athlete athlete) {
         return new AthleteResponse(
                 athlete.getId(),

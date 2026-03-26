@@ -54,6 +54,16 @@ public class ParticipantService {
         return mapToResponse(savedParticipant);
     }
 
+    public ParticipantResponse withdrawParticipant(Long participantId) {
+        Participant participant = participantRepository.findById(participantId)
+                .orElseThrow(() -> new RuntimeException("Participant not found"));
+
+        participant.setStatus("WITHDRAWN");
+        Participant savedParticipant = participantRepository.save(participant);
+
+        return mapToResponse(savedParticipant);
+    }
+
     private ParticipantResponse mapToResponse(Participant participant) {
         String athleteName = participant.getAthlete().getUser().getFirstName() + " "
                 + participant.getAthlete().getUser().getLastName();

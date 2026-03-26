@@ -372,3 +372,17 @@ Ajouter une autorisation par rôles pour mieux sécuriser les endpoints du backe
 
 ### Résultat
 L’application applique désormais des droits d’accès selon le rôle de l’utilisateur
+
+## Étape 25
+
+### Objectif
+Ajouter les premières fonctionnalités spécifiques à l’athlète.
+
+### Actions
+- ajout de la mise à jour de la charte européenne
+- ajout de la déclaration de forfait pour un participant
+- ajout de la consultation des performances d’un athlète
+- ajout de la consultation globale des performances
+
+### Résultat
+Les principales fonctionnalités backend de l’acteur Athlète sont disponibles

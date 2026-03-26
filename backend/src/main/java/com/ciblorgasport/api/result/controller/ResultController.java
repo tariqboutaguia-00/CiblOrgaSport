@@ -1,5 +1,7 @@
 package com.ciblorgasport.api.result.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
+import com.ciblorgasport.api.result.dto.AthletePerformanceResponse;
 import com.ciblorgasport.api.result.dto.CreateResultRequest;
 import com.ciblorgasport.api.result.dto.ResultResponse;
 import com.ciblorgasport.api.result.service.ResultService;
@@ -19,13 +21,27 @@ public class ResultController {
     }
 
     @GetMapping
-    public List<ResultResponse> getAllResults() {
-        return resultService.getAllResults();
+    public ApiResponse<List<ResultResponse>> getAllResults() {
+        return ApiResponse.success("Results retrieved successfully", resultService.getAllResults());
+    }
+
+    @GetMapping("/athlete/{athleteId}")
+    public ApiResponse<List<AthletePerformanceResponse>> getAthletePerformances(@PathVariable Long athleteId) {
+        return ApiResponse.success(
+                "Athlete performances retrieved successfully",
+                resultService.getAthletePerformances(athleteId));
+    }
+
+    @GetMapping("/performances")
+    public ApiResponse<List<AthletePerformanceResponse>> getAllPerformances() {
+        return ApiResponse.success(
+                "All performances retrieved successfully",
+                resultService.getAllPerformances());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResultResponse createResult(@Valid @RequestBody CreateResultRequest request) {
-        return resultService.createResult(request);
+    public ApiResponse<ResultResponse> createResult(@Valid @RequestBody CreateResultRequest request) {
+        return ApiResponse.success("Result created successfully", resultService.createResult(request));
     }
 }

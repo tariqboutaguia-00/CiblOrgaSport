@@ -59,6 +59,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/missions/**").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/statistics").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/athletes/*/charter").hasAnyRole("ATHLETE", "ADMIN")
+
+                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/withdraw").hasAnyRole("ATHLETE", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/results/athlete/*").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/results/performances").authenticated()
 
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
