@@ -134,6 +134,8 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/results` : enregistrer un résultat pour un participant
 - `GET /api/incidents` : récupérer la liste des incidents
 - `POST /api/incidents` : déclarer un incident
+- `GET /api/notifications` : récupérer la liste des notifications
+- `POST /api/notifications` : créer une notification
 
 ## Données initiales
 

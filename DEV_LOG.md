@@ -254,3 +254,20 @@ Permettre la gestion des incidents liés aux épreuves.
 
 ### Résultat
 Gestion de base des incidents disponible via l’API
+
+## Étape 17
+
+### Objectif
+Permettre la gestion des notifications pour les utilisateurs.
+
+### Actions
+- création de l’entité Notification
+- ajout de la migration SQL pour la table notifications
+- création du repository NotificationRepository
+- création des DTO de création et de réponse
+- création du service NotificationService
+- création du controller NotificationController
+- ajout de la relation entre Notification et User
+
+### Résultat
+Gestion de base des notifications disponible via l’API
