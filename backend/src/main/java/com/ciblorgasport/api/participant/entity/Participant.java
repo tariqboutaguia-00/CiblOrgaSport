@@ -26,6 +26,9 @@ public class Participant {
     @Column(nullable = false, length = 50)
     private String status;
 
+    @Column(name = "is_compliant", nullable = false)
+    private boolean compliant;
+
     @Column(nullable = false)
     private LocalDateTime registeredAt;
 
@@ -44,6 +47,7 @@ public class Participant {
         this.registeredAt = now;
         this.createdAt = now;
         this.updatedAt = now;
+        this.compliant = false;
     }
 
     @PreUpdate
@@ -77,6 +81,14 @@ public class Participant {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isCompliant() {
+        return compliant;
+    }
+
+    public void setCompliant(boolean compliant) {
+        this.compliant = compliant;
     }
 
     public LocalDateTime getRegisteredAt() {

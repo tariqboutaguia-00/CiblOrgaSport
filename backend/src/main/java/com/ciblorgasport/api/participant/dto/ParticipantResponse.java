@@ -10,17 +10,19 @@ public class ParticipantResponse {
     private Long eventId;
     private String eventName;
     private String status;
+    private boolean compliant;
     private LocalDateTime registeredAt;
 
     public ParticipantResponse(Long id, Long athleteId, String athleteName,
             Long eventId, String eventName, String status,
-            LocalDateTime registeredAt) {
+            boolean compliant, LocalDateTime registeredAt) {
         this.id = id;
         this.athleteId = athleteId;
         this.athleteName = athleteName;
         this.eventId = eventId;
         this.eventName = eventName;
         this.status = status;
+        this.compliant = compliant;
         this.registeredAt = registeredAt;
     }
 
@@ -46,6 +48,10 @@ public class ParticipantResponse {
 
     public String getStatus() {
         return status;
+    }
+
+    public boolean isCompliant() {
+        return compliant;
     }
 
     public LocalDateTime getRegisteredAt() {

@@ -47,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/results").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/incidents").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/incidents").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/incidents").hasAnyRole("COMMISSIONER","ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/notifications").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/notifications").hasRole("ADMIN")
@@ -64,6 +64,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/participants/*/withdraw").hasAnyRole("ATHLETE", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/results/athlete/*").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/results/performances").authenticated()
+
+                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/compliance").hasAnyRole("COMMISSIONER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/cancel").hasAnyRole("COMMISSIONER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/reschedule").hasAnyRole("COMMISSIONER", "ADMIN")
 
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())

@@ -4,6 +4,7 @@ import com.ciblorgasport.api.competition.entity.Competition;
 import com.ciblorgasport.api.competition.repository.CompetitionRepository;
 import com.ciblorgasport.api.event.dto.CreateEventRequest;
 import com.ciblorgasport.api.event.dto.EventResponse;
+import com.ciblorgasport.api.event.dto.RescheduleEventRequest;
 import com.ciblorgasport.api.event.entity.Event;
 import com.ciblorgasport.api.event.repository.EventRepository;
 import java.util.List;
@@ -38,6 +39,28 @@ public class EventService {
         event.setStartTime(request.getStartTime());
         event.setLocation(request.getLocation());
         event.setStatus(request.getStatus());
+
+        Event savedEvent = eventRepository.save(event);
+        return mapToResponse(savedEvent);
+    }
+
+    public EventResponse cancelEvent(Long eventId) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        event.setStatus("CANCELLED");
+        Event savedEvent = eventRepository.save(event);
+
+        return mapToResponse(savedEvent);
+    }
+
+    public EventResponse rescheduleEvent(Long eventId, RescheduleEventRequest request) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        event.setEventDate(request.getEventDate());
+        event.setStartTime(request.getStartTime());
+        event.setStatus("RESCHEDULED");
 
         Event savedEvent = eventRepository.save(event);
         return mapToResponse(savedEvent);

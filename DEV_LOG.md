@@ -386,3 +386,17 @@ Ajouter les premières fonctionnalités spécifiques à l’athlète.
 
 ### Résultat
 Les principales fonctionnalités backend de l’acteur Athlète sont disponibles
+
+## Étape 26
+
+### Objectif
+Ajouter les premières fonctionnalités spécifiques au commissaire.
+
+### Actions
+- ajout de la conformité des participants
+- ajout de l’annulation d’épreuve
+- ajout de la reprogrammation d’épreuve
+- réutilisation de la gestion des incidents déjà en place
+
+### Résultat
+Les principales fonctionnalités backend de l’acteur Commissaire sont disponibles

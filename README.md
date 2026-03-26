@@ -146,6 +146,9 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `PATCH /api/participants/{participantId}/withdraw` : déclarer forfait
 - `GET /api/results/athlete/{athleteId}` : consulter les performances d’un athlète
 - `GET /api/results/performances` : consulter toutes les performances
+- `PATCH /api/participants/{participantId}/compliance` : vérifier la conformité d’un participant
+- `PATCH /api/events/{eventId}/cancel` : annuler une épreuve
+- `PATCH /api/events/{eventId}/reschedule` : reprogrammer une épreuve
 
 ## Format des réponses API
 

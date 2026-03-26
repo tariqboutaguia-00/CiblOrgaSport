@@ -3,6 +3,7 @@ package com.ciblorgasport.api.participant.controller;
 import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.participant.dto.CreateParticipantRequest;
 import com.ciblorgasport.api.participant.dto.ParticipantResponse;
+import com.ciblorgasport.api.participant.dto.UpdateParticipantComplianceRequest;
 import com.ciblorgasport.api.participant.service.ParticipantService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -35,5 +36,14 @@ public class ParticipantController {
         return ApiResponse.success(
                 "Participant withdrawn successfully",
                 participantService.withdrawParticipant(participantId));
+    }
+
+    @PatchMapping("/{participantId}/compliance")
+    public ApiResponse<ParticipantResponse> updateCompliance(
+            @PathVariable Long participantId,
+            @Valid @RequestBody UpdateParticipantComplianceRequest request) {
+        return ApiResponse.success(
+                "Participant compliance updated successfully",
+                participantService.updateCompliance(participantId, request.getCompliant()));
     }
 }

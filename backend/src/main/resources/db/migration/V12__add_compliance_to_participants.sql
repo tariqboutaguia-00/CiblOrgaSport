@@ -1,0 +1,2 @@
+ALTER TABLE participants
+ADD COLUMN is_compliant BOOLEAN NOT NULL DEFAULT FALSE;
