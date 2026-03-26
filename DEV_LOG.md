@@ -359,3 +359,16 @@ Mettre en place une authentification JWT pour sécuriser les endpoints du backen
 
 ### Résultat
 L’authentification par JWT est en place et les endpoints sont protégés
+
+## Étape 24
+
+### Objectif
+Ajouter une autorisation par rôles pour mieux sécuriser les endpoints du backend.
+
+### Actions
+- mise à jour de JwtAuthenticationFilter pour inclure le rôle dans le contexte Spring Security
+- mise à jour de SecurityConfig avec des règles d’accès par rôle
+- distinction entre endpoints de consultation et endpoints de création
+
+### Résultat
+L’application applique désormais des droits d’accès selon le rôle de l’utilisateur

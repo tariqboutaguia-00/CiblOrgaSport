@@ -2,7 +2,9 @@ package com.ciblorgasport.api.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -24,6 +27,39 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/actuator/health").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/users").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/users").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/competitions").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/competitions").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/events").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/events").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/athletes").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/athletes").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/participants").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/participants").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/results").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/results").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/incidents").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/incidents").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/notifications").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/notifications").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/volunteers").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/volunteers").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/missions").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/missions/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/statistics").hasRole("ADMIN")
+
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

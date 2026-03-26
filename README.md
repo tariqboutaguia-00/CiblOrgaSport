@@ -178,6 +178,14 @@ Les endpoints protégés nécessitent un header :
 ```text
 Authorization: Bearer <token>
 ```
+## Autorisation par rôles
+
+L’application distingue désormais les droits selon le rôle de l’utilisateur.
+
+Exemples :
+- les utilisateurs authentifiés peuvent consulter certaines ressources
+- les actions de création sensibles sont réservées à l’administrateur
+- les statistiques globales sont réservées à l’administrateur
 
 ## Statut
 
