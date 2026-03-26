@@ -136,6 +136,8 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/incidents` : déclarer un incident
 - `GET /api/notifications` : récupérer la liste des notifications
 - `POST /api/notifications` : créer une notification
+- `GET /api/volunteers` : récupérer la liste des volontaires
+- `POST /api/volunteers` : créer un profil volontaire
 
 ## Données initiales
 

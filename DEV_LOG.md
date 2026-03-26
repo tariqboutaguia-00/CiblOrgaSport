@@ -271,3 +271,20 @@ Permettre la gestion des notifications pour les utilisateurs.
 
 ### Résultat
 Gestion de base des notifications disponible via l’API
+
+## Étape 18
+
+### Objectif
+Ajouter la gestion des profils volontaires reliés aux utilisateurs.
+
+### Actions
+- création de l’entité Volunteer
+- ajout de la migration SQL pour la table volunteers
+- création du repository VolunteerRepository
+- création des DTO de création et de réponse
+- création du service VolunteerService
+- création du controller VolunteerController
+- ajout de la relation entre Volunteer et User
+
+### Résultat
+Gestion de base des profils volontaires disponible via l’API
