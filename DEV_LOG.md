@@ -319,3 +319,16 @@ Ajouter un endpoint de statistiques simples pour suivre l’état global de l’
 
 ### Résultat
 Un endpoint de synthèse permet maintenant de consulter les statistiques globales de l’application
+
+## Étape 21
+
+### Objectif
+Améliorer la qualité des réponses API et centraliser la gestion des erreurs.
+
+### Actions
+- création de la classe ApiResponse
+- amélioration de GlobalExceptionHandler
+- homogénéisation des réponses sur plusieurs controllers
+
+### Résultat
+Les réponses API sont plus lisibles, cohérentes et professionnelles

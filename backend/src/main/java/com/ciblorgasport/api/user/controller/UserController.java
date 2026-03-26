@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.user.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.user.dto.CreateUserRequest;
 import com.ciblorgasport.api.user.dto.UserResponse;
 import com.ciblorgasport.api.user.service.UserService;
@@ -19,13 +20,13 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponse> getAllUsers() {
-        return userService.getAllUsers();
+    public ApiResponse<List<UserResponse>> getAllUsers() {
+        return ApiResponse.success("Users retrieved successfully", userService.getAllUsers());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse createUser(@Valid @RequestBody CreateUserRequest request) {
-        return userService.createUser(request);
+    public ApiResponse<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
+        return ApiResponse.success("User created successfully", userService.createUser(request));
     }
 }

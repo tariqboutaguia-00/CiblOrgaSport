@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.competition.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.competition.dto.CompetitionResponse;
 import com.ciblorgasport.api.competition.dto.CreateCompetitionRequest;
 import com.ciblorgasport.api.competition.service.CompetitionService;
@@ -19,13 +20,13 @@ public class CompetitionController {
     }
 
     @GetMapping
-    public List<CompetitionResponse> getAllCompetitions() {
-        return competitionService.getAllCompetitions();
+    public ApiResponse<List<CompetitionResponse>> getAllCompetitions() {
+        return ApiResponse.success("Competitions retrieved successfully", competitionService.getAllCompetitions());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CompetitionResponse createCompetition(@Valid @RequestBody CreateCompetitionRequest request) {
-        return competitionService.createCompetition(request);
+    public ApiResponse<CompetitionResponse> createCompetition(@Valid @RequestBody CreateCompetitionRequest request) {
+        return ApiResponse.success("Competition created successfully", competitionService.createCompetition(request));
     }
 }

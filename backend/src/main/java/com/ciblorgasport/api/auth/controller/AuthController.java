@@ -3,6 +3,7 @@ package com.ciblorgasport.api.auth.controller;
 import com.ciblorgasport.api.auth.dto.LoginRequest;
 import com.ciblorgasport.api.auth.dto.LoginResponse;
 import com.ciblorgasport.api.auth.service.AuthService;
+import com.ciblorgasport.api.common.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@Valid @RequestBody LoginRequest request) {
-        return authService.login(request);
+    public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ApiResponse.success("Login successful", authService.login(request));
     }
 }

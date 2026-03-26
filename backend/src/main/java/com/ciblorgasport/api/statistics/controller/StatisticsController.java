@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.statistics.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.statistics.dto.StatisticsResponse;
 import com.ciblorgasport.api.statistics.service.StatisticsService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class StatisticsController {
     }
 
     @GetMapping
-    public StatisticsResponse getOverview() {
-        return statisticsService.getOverview();
+    public ApiResponse<StatisticsResponse> getOverview() {
+        return ApiResponse.success("Statistics retrieved successfully", statisticsService.getOverview());
     }
 }

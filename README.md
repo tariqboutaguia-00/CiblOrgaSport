@@ -143,6 +143,16 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/missions/{missionId}/assign/{volunteerId}` : affecter un volontaire à une mission
 - `GET /api/statistics` : récupérer un résumé statistique de l’application
 
+## Format des réponses API
+
+Les réponses de l’API utilisent un format JSON homogène avec :
+- `success`
+- `message`
+- `data`
+- `timestamp`
+
+Les erreurs de validation et les erreurs métier sont également gérées de manière centralisée.
+
 ## Données initiales
 
 Au démarrage de l’application, un compte administrateur est créé automatiquement si aucun administrateur n’existe.

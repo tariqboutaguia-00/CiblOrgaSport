@@ -11,17 +11,24 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleRuntimeException(RuntimeException ex) {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", ex.getMessage());
-        return response;
+    public ApiResponse<Void> handleRuntimeException(RuntimeException ex) {
+        return ApiResponse.error(ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
-        Map<String, String> response = new HashMap<>();
-        response.put("error", "Validation failed");
+    public Map<String, Object> handleValidationException(MethodArgumentNotValidException ex) {
+        Map<String, String> fieldErrors = new HashMap<>();
+
+        ex.getBindingResult().getFieldErrors()
+                .forEach(error -> fieldErrors.put(error.getField(), error.getDefaultMessage()));
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", false);
+        response.put("message", "Validation failed");
+        response.put("errors", fieldErrors);
+        response.put("timestamp", java.time.LocalDateTime.now());
+
         return response;
     }
 }
