@@ -305,3 +305,17 @@ Permettre la gestion des missions et l’affectation des volontaires.
 
 ### Résultat
 Gestion des missions et affectation des volontaires disponibles via l’API
+
+## Étape 20
+
+### Objectif
+Ajouter un endpoint de statistiques simples pour suivre l’état global de l’application.
+
+### Actions
+- création du DTO StatisticsResponse
+- création du service StatisticsService
+- création du controller StatisticsController
+- agrégation des compteurs principaux via les repositories
+
+### Résultat
+Un endpoint de synthèse permet maintenant de consulter les statistiques globales de l’application

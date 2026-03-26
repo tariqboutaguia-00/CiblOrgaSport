@@ -141,6 +141,7 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `GET /api/missions` : récupérer la liste des missions
 - `POST /api/missions` : créer une mission
 - `POST /api/missions/{missionId}/assign/{volunteerId}` : affecter un volontaire à une mission
+- `GET /api/statistics` : récupérer un résumé statistique de l’application
 
 ## Données initiales
 
