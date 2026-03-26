@@ -344,3 +344,18 @@ Ajouter des données initiales pour faciliter les tests et la démonstration.
 
 ### Résultat
 L’application démarre avec des données prêtes à l’emploi
+
+## Étape 23
+
+### Objectif
+Mettre en place une authentification JWT pour sécuriser les endpoints du backend.
+
+### Actions
+- ajout des dépendances jjwt
+- création de JwtService
+- modification du login pour retourner un token
+- création de JwtAuthenticationFilter
+- mise à jour de SecurityConfig pour protéger les routes
+
+### Résultat
+L’authentification par JWT est en place et les endpoints sont protégés

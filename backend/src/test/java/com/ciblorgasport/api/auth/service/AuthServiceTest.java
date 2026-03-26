@@ -2,6 +2,7 @@ package com.ciblorgasport.api.auth.service;
 
 import com.ciblorgasport.api.auth.dto.LoginRequest;
 import com.ciblorgasport.api.auth.dto.LoginResponse;
+import com.ciblorgasport.api.security.JwtService;
 import com.ciblorgasport.api.user.Role;
 import com.ciblorgasport.api.user.entity.User;
 import com.ciblorgasport.api.user.repository.UserRepository;
@@ -18,13 +19,15 @@ class AuthServiceTest {
 
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
+    private JwtService jwtService;
     private AuthService authService;
 
     @BeforeEach
     void setUp() {
         userRepository = mock(UserRepository.class);
         passwordEncoder = mock(PasswordEncoder.class);
-        authService = new AuthService(userRepository, passwordEncoder);
+        jwtService = mock(JwtService.class);
+        authService = new AuthService(userRepository, passwordEncoder, jwtService);
     }
 
     @Test
@@ -43,6 +46,7 @@ class AuthServiceTest {
 
         when(userRepository.findByEmail("admin@ciblorgasport.com")).thenReturn(Optional.of(user));
         when(passwordEncoder.matches("admin123", "hashed-password")).thenReturn(true);
+        when(jwtService.generateToken("admin@ciblorgasport.com")).thenReturn("fake-jwt-token");
 
         LoginResponse response = authService.login(request);
 
@@ -50,6 +54,7 @@ class AuthServiceTest {
         assertEquals("admin@ciblorgasport.com", response.getEmail());
         assertEquals(Role.ADMIN, response.getRole());
         assertEquals("Login successful", response.getMessage());
+        assertEquals("fake-jwt-token", response.getToken());
     }
 
     @Test

@@ -9,14 +9,17 @@ public class LoginResponse {
     private String lastName;
     private String email;
     private Role role;
+    private String token;
     private String message;
 
-    public LoginResponse(Long id, String firstName, String lastName, String email, Role role, String message) {
+    public LoginResponse(Long id, String firstName, String lastName, String email, Role role, String token,
+            String message) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.role = role;
+        this.token = token;
         this.message = message;
     }
 
@@ -38,6 +41,10 @@ public class LoginResponse {
 
     public Role getRole() {
         return role;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public String getMessage() {

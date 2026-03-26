@@ -165,6 +165,19 @@ L’application initialise automatiquement des utilisateurs de test au démarrag
 Email : admin@ciblorgasport.com
 Mot de passe : admin123
 ```
+## Authentification
+
+L’API utilise désormais un système JWT.
+
+### Login
+- `POST /api/auth/login`
+
+### Utilisation du token
+Les endpoints protégés nécessitent un header :
+
+```text
+Authorization: Bearer <token>
+```
 
 ## Statut
 
