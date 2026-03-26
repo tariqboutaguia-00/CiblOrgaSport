@@ -138,6 +138,9 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/notifications` : créer une notification
 - `GET /api/volunteers` : récupérer la liste des volontaires
 - `POST /api/volunteers` : créer un profil volontaire
+- `GET /api/missions` : récupérer la liste des missions
+- `POST /api/missions` : créer une mission
+- `POST /api/missions/{missionId}/assign/{volunteerId}` : affecter un volontaire à une mission
 
 ## Données initiales
 

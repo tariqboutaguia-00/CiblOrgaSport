@@ -288,3 +288,20 @@ Ajouter la gestion des profils volontaires reliés aux utilisateurs.
 
 ### Résultat
 Gestion de base des profils volontaires disponible via l’API
+
+## Étape 19
+
+### Objectif
+Permettre la gestion des missions et l’affectation des volontaires.
+
+### Actions
+- création de l’entité Mission
+- ajout des migrations SQL pour les tables missions et volunteer_missions
+- création du repository MissionRepository
+- création des DTO de création et de réponse
+- création du service MissionService
+- création du controller MissionController
+- ajout de la relation many-to-many entre Mission et Volunteer
+
+### Résultat
+Gestion des missions et affectation des volontaires disponibles via l’API
