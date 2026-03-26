@@ -155,7 +155,11 @@ Les erreurs de validation et les erreurs métier sont également gérées de man
 
 ## Données initiales
 
-Au démarrage de l’application, un compte administrateur est créé automatiquement si aucun administrateur n’existe.
+L’application initialise automatiquement des utilisateurs de test au démarrage :
+
+- admin@ciblorgasport.com (ADMIN)
+- tariq@ciblorgasport.com (ATHLETE)
+- sara@ciblorgasport.com (VOLUNTEER)
 
 ```text
 Email : admin@ciblorgasport.com

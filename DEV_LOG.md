@@ -332,3 +332,15 @@ Améliorer la qualité des réponses API et centraliser la gestion des erreurs.
 
 ### Résultat
 Les réponses API sont plus lisibles, cohérentes et professionnelles
+
+## Étape 22
+
+### Objectif
+Ajouter des données initiales pour faciliter les tests et la démonstration.
+
+### Actions
+- création d’un DataInitializer
+- insertion automatique de plusieurs utilisateurs au démarrage
+
+### Résultat
+L’application démarre avec des données prêtes à l’emploi

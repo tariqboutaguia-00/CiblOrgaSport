@@ -20,20 +20,37 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String adminEmail = "admin@ciblorgasport.com";
 
-        if (userRepository.existsByEmail(adminEmail)) {
+        if (userRepository.count() > 0) {
             return;
         }
 
         User admin = new User();
-        admin.setFirstName("System");
-        admin.setLastName("Admin");
-        admin.setEmail(adminEmail);
+        admin.setFirstName("Admin");
+        admin.setLastName("System");
+        admin.setEmail("admin@ciblorgasport.com");
         admin.setPassword(passwordEncoder.encode("admin123"));
         admin.setRole(Role.ADMIN);
         admin.setEnabled(true);
 
+        User athlete = new User();
+        athlete.setFirstName("Tariq");
+        athlete.setLastName("Swimmer");
+        athlete.setEmail("tariq@ciblorgasport.com");
+        athlete.setPassword(passwordEncoder.encode("password"));
+        athlete.setRole(Role.ATHLETE);
+        athlete.setEnabled(true);
+
+        User volunteer = new User();
+        volunteer.setFirstName("Sara");
+        volunteer.setLastName("Helper");
+        volunteer.setEmail("sara@ciblorgasport.com");
+        volunteer.setPassword(passwordEncoder.encode("password"));
+        volunteer.setRole(Role.VOLUNTEER);
+        volunteer.setEnabled(true);
+
         userRepository.save(admin);
+        userRepository.save(athlete);
+        userRepository.save(volunteer);
     }
 }
