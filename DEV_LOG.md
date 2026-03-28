@@ -400,3 +400,16 @@ Ajouter les premières fonctionnalités spécifiques au commissaire.
 
 ### Résultat
 Les principales fonctionnalités backend de l’acteur Commissaire sont disponibles
+
+## Étape 27
+
+### Objectif
+Ajouter les premières fonctionnalités spécifiques au responsable déploiement.
+
+### Actions
+- ajout de la gestion des points de rendez-vous sur les épreuves
+- ajout de la gestion d’accès aux comptes via activation ou désactivation
+- réutilisation des statistiques et notifications déjà présentes
+
+### Résultat
+Les principales fonctionnalités backend du responsable déploiement sont disponibles

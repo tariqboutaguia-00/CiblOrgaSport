@@ -5,6 +5,7 @@ import com.ciblorgasport.api.competition.repository.CompetitionRepository;
 import com.ciblorgasport.api.event.dto.CreateEventRequest;
 import com.ciblorgasport.api.event.dto.EventResponse;
 import com.ciblorgasport.api.event.dto.RescheduleEventRequest;
+import com.ciblorgasport.api.event.dto.UpdateMeetingPointsRequest;
 import com.ciblorgasport.api.event.entity.Event;
 import com.ciblorgasport.api.event.repository.EventRepository;
 import java.util.List;
@@ -39,6 +40,10 @@ public class EventService {
         event.setStartTime(request.getStartTime());
         event.setLocation(request.getLocation());
         event.setStatus(request.getStatus());
+        event.setAthleteMeetingPoint(request.getAthleteMeetingPoint());
+        event.setCommissionerMeetingPoint(request.getCommissionerMeetingPoint());
+        event.setVolunteerMeetingPoint(request.getVolunteerMeetingPoint());
+        event.setPublicMeetingPoint(request.getPublicMeetingPoint());
 
         Event savedEvent = eventRepository.save(event);
         return mapToResponse(savedEvent);
@@ -66,6 +71,19 @@ public class EventService {
         return mapToResponse(savedEvent);
     }
 
+    public EventResponse updateMeetingPoints(Long eventId, UpdateMeetingPointsRequest request) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        event.setAthleteMeetingPoint(request.getAthleteMeetingPoint());
+        event.setCommissionerMeetingPoint(request.getCommissionerMeetingPoint());
+        event.setVolunteerMeetingPoint(request.getVolunteerMeetingPoint());
+        event.setPublicMeetingPoint(request.getPublicMeetingPoint());
+
+        Event savedEvent = eventRepository.save(event);
+        return mapToResponse(savedEvent);
+    }
+
     private EventResponse mapToResponse(Event event) {
         return new EventResponse(
                 event.getId(),
@@ -75,6 +93,10 @@ public class EventService {
                 event.getEventDate(),
                 event.getStartTime(),
                 event.getLocation(),
-                event.getStatus());
+                event.getStatus(),
+                event.getAthleteMeetingPoint(),
+                event.getCommissionerMeetingPoint(),
+                event.getVolunteerMeetingPoint(),
+                event.getPublicMeetingPoint());
     }
 }

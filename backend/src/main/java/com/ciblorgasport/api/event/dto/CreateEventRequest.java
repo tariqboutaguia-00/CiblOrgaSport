@@ -31,6 +31,11 @@ public class CreateEventRequest {
     @Size(max = 50)
     private String status;
 
+    private String athleteMeetingPoint;
+    private String commissionerMeetingPoint;
+    private String volunteerMeetingPoint;
+    private String publicMeetingPoint;
+
     public CreateEventRequest() {
     }
 
@@ -80,5 +85,37 @@ public class CreateEventRequest {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAthleteMeetingPoint() {
+        return athleteMeetingPoint;
+    }
+
+    public void setAthleteMeetingPoint(String athleteMeetingPoint) {
+        this.athleteMeetingPoint = athleteMeetingPoint;
+    }
+
+    public String getCommissionerMeetingPoint() {
+        return commissionerMeetingPoint;
+    }
+
+    public void setCommissionerMeetingPoint(String commissionerMeetingPoint) {
+        this.commissionerMeetingPoint = commissionerMeetingPoint;
+    }
+
+    public String getVolunteerMeetingPoint() {
+        return volunteerMeetingPoint;
+    }
+
+    public void setVolunteerMeetingPoint(String volunteerMeetingPoint) {
+        this.volunteerMeetingPoint = volunteerMeetingPoint;
+    }
+
+    public String getPublicMeetingPoint() {
+        return publicMeetingPoint;
+    }
+
+    public void setPublicMeetingPoint(String publicMeetingPoint) {
+        this.publicMeetingPoint = publicMeetingPoint;
     }
 }

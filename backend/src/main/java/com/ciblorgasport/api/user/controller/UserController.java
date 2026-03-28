@@ -2,6 +2,7 @@ package com.ciblorgasport.api.user.controller;
 
 import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.user.dto.CreateUserRequest;
+import com.ciblorgasport.api.user.dto.UpdateUserAccessRequest;
 import com.ciblorgasport.api.user.dto.UserResponse;
 import com.ciblorgasport.api.user.service.UserService;
 import jakarta.validation.Valid;
@@ -28,5 +29,14 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
         return ApiResponse.success("User created successfully", userService.createUser(request));
+    }
+
+    @PatchMapping("/{userId}/access")
+    public ApiResponse<UserResponse> updateUserAccess(
+            @PathVariable Long userId,
+            @Valid @RequestBody UpdateUserAccessRequest request) {
+        return ApiResponse.success(
+                "User access updated successfully",
+                userService.updateUserAccess(userId, request.getEnabled()));
     }
 }

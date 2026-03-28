@@ -149,6 +149,8 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `PATCH /api/participants/{participantId}/compliance` : vérifier la conformité d’un participant
 - `PATCH /api/events/{eventId}/cancel` : annuler une épreuve
 - `PATCH /api/events/{eventId}/reschedule` : reprogrammer une épreuve
+- `PATCH /api/events/{eventId}/meeting-points` : gérer les points de rendez-vous d’une épreuve
+- `PATCH /api/users/{userId}/access` : activer ou désactiver l’accès à un compte
 
 ## Format des réponses API
 

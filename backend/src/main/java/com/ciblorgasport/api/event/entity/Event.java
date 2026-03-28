@@ -39,6 +39,18 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    @Column(name = "athlete_meeting_point", length = 150)
+    private String athleteMeetingPoint;
+
+    @Column(name = "commissioner_meeting_point", length = 150)
+    private String commissionerMeetingPoint;
+
+    @Column(name = "volunteer_meeting_point", length = 150)
+    private String volunteerMeetingPoint;
+
+    @Column(name = "public_meeting_point", length = 150)
+    private String publicMeetingPoint;
+
     public Event() {
     }
 
@@ -103,5 +115,37 @@ public class Event {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAthleteMeetingPoint() {
+        return athleteMeetingPoint;
+    }
+
+    public void setAthleteMeetingPoint(String athleteMeetingPoint) {
+        this.athleteMeetingPoint = athleteMeetingPoint;
+    }
+
+    public String getCommissionerMeetingPoint() {
+        return commissionerMeetingPoint;
+    }
+
+    public void setCommissionerMeetingPoint(String commissionerMeetingPoint) {
+        this.commissionerMeetingPoint = commissionerMeetingPoint;
+    }
+
+    public String getVolunteerMeetingPoint() {
+        return volunteerMeetingPoint;
+    }
+
+    public void setVolunteerMeetingPoint(String volunteerMeetingPoint) {
+        this.volunteerMeetingPoint = volunteerMeetingPoint;
+    }
+
+    public String getPublicMeetingPoint() {
+        return publicMeetingPoint;
+    }
+
+    public void setPublicMeetingPoint(String publicMeetingPoint) {
+        this.publicMeetingPoint = publicMeetingPoint;
     }
 }

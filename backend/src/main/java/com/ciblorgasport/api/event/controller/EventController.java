@@ -4,6 +4,7 @@ import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.event.dto.CreateEventRequest;
 import com.ciblorgasport.api.event.dto.EventResponse;
 import com.ciblorgasport.api.event.dto.RescheduleEventRequest;
+import com.ciblorgasport.api.event.dto.UpdateMeetingPointsRequest;
 import com.ciblorgasport.api.event.service.EventService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -41,5 +42,14 @@ public class EventController {
             @PathVariable Long eventId,
             @Valid @RequestBody RescheduleEventRequest request) {
         return ApiResponse.success("Event rescheduled successfully", eventService.rescheduleEvent(eventId, request));
+    }
+
+    @PatchMapping("/{eventId}/meeting-points")
+    public ApiResponse<EventResponse> updateMeetingPoints(
+            @PathVariable Long eventId,
+            @RequestBody UpdateMeetingPointsRequest request) {
+        return ApiResponse.success(
+                "Meeting points updated successfully",
+                eventService.updateMeetingPoints(eventId, request));
     }
 }

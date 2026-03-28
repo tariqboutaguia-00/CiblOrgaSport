@@ -43,6 +43,16 @@ public class UserService {
         return mapToResponse(savedUser);
     }
 
+    public UserResponse updateUserAccess(Long userId, boolean enabled) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEnabled(enabled);
+        User savedUser = userRepository.save(user);
+
+        return mapToResponse(savedUser);
+    }
+
     private UserResponse mapToResponse(User user) {
         return new UserResponse(
                 user.getId(),
