@@ -72,6 +72,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/events/*/meeting-points").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/api/users/*/access").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
 
+                        .requestMatchers(HttpMethod.POST, "/api/notifications/subscribe").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/notifications/user/**").authenticated()
+
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,8 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public class CreateNotificationRequest {
 
-    @NotNull
-    private Long userId;
+   
 
     @NotBlank
     @Size(max = 50)
@@ -20,14 +19,6 @@ public class CreateNotificationRequest {
     private Boolean read;
 
     public CreateNotificationRequest() {
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getType() {

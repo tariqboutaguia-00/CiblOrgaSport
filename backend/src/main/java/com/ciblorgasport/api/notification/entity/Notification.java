@@ -37,6 +37,7 @@ public class Notification {
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
+        this.read = false;
         this.createdAt = now;
         this.updatedAt = now;
     }

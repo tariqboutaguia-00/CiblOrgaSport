@@ -151,6 +151,9 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `PATCH /api/events/{eventId}/reschedule` : reprogrammer une épreuve
 - `PATCH /api/events/{eventId}/meeting-points` : gérer les points de rendez-vous d’une épreuve
 - `PATCH /api/users/{userId}/access` : activer ou désactiver l’accès à un compte
+- `POST /api/notifications/subscribe` : s’abonner à un type de notification
+- `GET /api/notifications/user/{userId}` : récupérer les notifications d’un utilisateur
+- `PATCH /api/notifications/{id}/read` : marquer une notification comme lue
 
 ## Format des réponses API
 

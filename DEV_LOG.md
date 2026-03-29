@@ -413,3 +413,17 @@ Ajouter les premières fonctionnalités spécifiques au responsable déploiement
 
 ### Résultat
 Les principales fonctionnalités backend du responsable déploiement sont disponibles
+
+## Étape 28
+
+### Objectif
+Implémenter un système de notifications avancé avec abonnements.
+
+### Actions
+- ajout de l’entité Subscription
+- envoi de notifications ciblées selon les abonnements
+- ajout de la lecture des notifications
+- ajout de l’abonnement par type (sport, sécurité, fan zone)
+
+### Résultat
+Le système de notifications est maintenant complet
