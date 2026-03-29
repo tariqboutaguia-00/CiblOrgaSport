@@ -219,6 +219,7 @@ Le frontend est séparé en deux applications React :
 - dashboard et navigation adaptés selon le rôle de l’utilisateur connecté
 - affichage réel des compétitions dans le back-office via appel API Axios
 - affichage réel des épreuves dans le back-office
+- affichage réel des participants dans le back-office
 
 ## Statut
 
