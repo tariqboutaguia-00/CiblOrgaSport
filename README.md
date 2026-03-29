@@ -203,6 +203,17 @@ Exemples :
 - les actions de création sensibles sont réservées à l’administrateur
 - les statistiques globales sont réservées à l’administrateur
 
+### Frontend
+
+Le frontend est séparé en deux applications React :
+
+- `frontend/front-office` : site vitrine public
+- `frontend/back-office` : interface de gestion
+
+#### État actuel
+- back-office : template admin nettoyé et préparé pour l’intégration métier
+- front-office : template TeleportHQ nettoyé et simplifié pour obtenir une base vitrine claire, professionnelle et maintenable
+
 ## Statut
 
-Développement du backend en cours.
+Développement du frontend en cours.

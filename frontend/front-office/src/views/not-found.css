@@ -1,0 +1,45 @@
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f8fafc;
+}
+
+.not-found-card {
+  max-width: 500px;
+  width: 100%;
+  padding: 40px 32px;
+  text-align: center;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.not-found-code {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.not-found-card h1 {
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.not-found-card p {
+  margin: 0 0 24px;
+  color: #64748b;
+}
+
+.not-found-button {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}

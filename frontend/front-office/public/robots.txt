@@ -1,0 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://dental-colorful-salamander-mai0t8.teleporthq.app/sitemap.xml

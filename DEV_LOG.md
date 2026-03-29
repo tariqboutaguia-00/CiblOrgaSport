@@ -455,3 +455,20 @@ Nettoyer et professionnaliser le module notifications avant l’intégration du 
 
 ### Résultat
 Le module notifications est maintenant plus propre, cohérent et prêt pour le frontend
+
+## Étape 31
+
+### Objectif
+
+Initialiser et nettoyer le frontend pour préparer l’intégration avec le backend.
+
+### Actions
+- création des dossiers frontend/front-office et frontend/back-office
+- import des templates (TeleportHQ et admin dashboard)
+- nettoyage du back-office (suppression des pages de démonstration inutiles)
+- nettoyage du front-office (suppression des dépendances inutiles et simplification du code)
+- mise à jour du README.md pour refléter la nouvelle structure
+
+### Résultat
+
+Le frontend est maintenant organisé, propre et prêt pour commencer l’intégration avec le backend (authentification JWT et fonctionnalités métier).
