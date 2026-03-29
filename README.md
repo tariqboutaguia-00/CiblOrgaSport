@@ -154,6 +154,9 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `POST /api/notifications/subscribe` : s’abonner à un type de notification
 - `GET /api/notifications/user/{userId}` : récupérer les notifications d’un utilisateur
 - `PATCH /api/notifications/{id}/read` : marquer une notification comme lue
+- `GET /api/users/me` : récupérer l’utilisateur connecté
+- `GET /api/missions/volunteer/{volunteerId}/today` : consulter le planning du jour d’un volontaire
+- `GET /api/events/public-schedule` : consulter les horaires et lieux destinés au public
 
 ## Format des réponses API
 

@@ -1,5 +1,6 @@
 package com.ciblorgasport.api.mission.controller;
 
+import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.mission.dto.CreateMissionRequest;
 import com.ciblorgasport.api.mission.dto.MissionResponse;
 import com.ciblorgasport.api.mission.service.MissionService;
@@ -19,18 +20,27 @@ public class MissionController {
     }
 
     @GetMapping
-    public List<MissionResponse> getAllMissions() {
-        return missionService.getAllMissions();
+    public ApiResponse<List<MissionResponse>> getAllMissions() {
+        return ApiResponse.success("Missions retrieved successfully", missionService.getAllMissions());
+    }
+
+    @GetMapping("/volunteer/{volunteerId}/today")
+    public ApiResponse<List<MissionResponse>> getVolunteerTodayMissions(@PathVariable Long volunteerId) {
+        return ApiResponse.success(
+                "Volunteer daily missions retrieved successfully",
+                missionService.getVolunteerTodayMissions(volunteerId));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MissionResponse createMission(@Valid @RequestBody CreateMissionRequest request) {
-        return missionService.createMission(request);
+    public ApiResponse<MissionResponse> createMission(@Valid @RequestBody CreateMissionRequest request) {
+        return ApiResponse.success("Mission created successfully", missionService.createMission(request));
     }
 
     @PostMapping("/{missionId}/assign/{volunteerId}")
-    public MissionResponse assignVolunteer(@PathVariable Long missionId, @PathVariable Long volunteerId) {
-        return missionService.assignVolunteer(missionId, volunteerId);
+    public ApiResponse<MissionResponse> assignVolunteer(@PathVariable Long missionId, @PathVariable Long volunteerId) {
+        return ApiResponse.success(
+                "Volunteer assigned successfully",
+                missionService.assignVolunteer(missionId, volunteerId));
     }
 }

@@ -84,6 +84,13 @@ public class EventService {
         return mapToResponse(savedEvent);
     }
 
+    public List<EventResponse> getPublicSchedule() {
+        return eventRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
     private EventResponse mapToResponse(Event event) {
         return new EventResponse(
                 event.getId(),

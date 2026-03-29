@@ -6,6 +6,7 @@ import com.ciblorgasport.api.mission.entity.Mission;
 import com.ciblorgasport.api.mission.repository.MissionRepository;
 import com.ciblorgasport.api.volunteer.entity.Volunteer;
 import com.ciblorgasport.api.volunteer.repository.VolunteerRepository;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,13 @@ public class MissionService {
 
     public List<MissionResponse> getAllMissions() {
         return missionRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+    public List<MissionResponse> getVolunteerTodayMissions(Long volunteerId) {
+        return missionRepository.findByVolunteersIdAndMissionDate(volunteerId, LocalDate.now())
                 .stream()
                 .map(this::mapToResponse)
                 .toList();

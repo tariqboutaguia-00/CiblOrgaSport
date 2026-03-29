@@ -75,6 +75,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/notifications/subscribe").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/notifications/user/**").authenticated()
 
+                        .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/missions/volunteer/*/today").hasAnyRole("VOLUNTEER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/events/public-schedule").authenticated()
+
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

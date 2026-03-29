@@ -52,4 +52,11 @@ public class EventController {
                 "Meeting points updated successfully",
                 eventService.updateMeetingPoints(eventId, request));
     }
+
+    @GetMapping("/public-schedule")
+    public ApiResponse<List<EventResponse>> getPublicSchedule() {
+        return ApiResponse.success(
+                "Public schedule retrieved successfully",
+                eventService.getPublicSchedule());
+    }
 }

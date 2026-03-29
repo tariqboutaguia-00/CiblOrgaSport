@@ -427,3 +427,16 @@ Implémenter un système de notifications avancé avec abonnements.
 
 ### Résultat
 Le système de notifications est maintenant complet
+
+## Étape 29
+
+### Objectif
+Finaliser les fonctionnalités backend restantes pour les utilisateurs connectés, volontaires et spectateurs.
+
+### Actions
+- ajout de l’endpoint utilisateur connecté
+- ajout du planning du jour pour les volontaires
+- ajout d’un endpoint d’horaires et lieux publics pour les spectateurs
+
+### Résultat
+Le backend couvre désormais les besoins principaux restants avant l’intégration du frontend

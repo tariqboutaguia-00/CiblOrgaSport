@@ -4,10 +4,12 @@ import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.user.dto.CreateUserRequest;
 import com.ciblorgasport.api.user.dto.UpdateUserAccessRequest;
 import com.ciblorgasport.api.user.dto.UserResponse;
+import com.ciblorgasport.api.user.entity.User;
 import com.ciblorgasport.api.user.service.UserService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,6 +27,12 @@ public class UserController {
         return ApiResponse.success("Users retrieved successfully", userService.getAllUsers());
     }
 
+    @GetMapping("/me")
+    public ApiResponse<UserResponse> getCurrentUser(Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
+        return ApiResponse.success("Current user retrieved successfully", userService.getById(currentUser.getId()));
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<UserResponse> createUser(@Valid @RequestBody CreateUserRequest request) {
@@ -34,9 +42,11 @@ public class UserController {
     @PatchMapping("/{userId}/access")
     public ApiResponse<UserResponse> updateUserAccess(
             @PathVariable Long userId,
-            @Valid @RequestBody UpdateUserAccessRequest request) {
+            @Valid @RequestBody UpdateUserAccessRequest request
+    ) {
         return ApiResponse.success(
                 "User access updated successfully",
-                userService.updateUserAccess(userId, request.getEnabled()));
+                userService.updateUserAccess(userId, request.getEnabled())
+        );
     }
 }
