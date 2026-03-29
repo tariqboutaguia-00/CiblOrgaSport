@@ -157,6 +157,7 @@ Les mots de passe des utilisateurs sont maintenant stockés de manière sécuris
 - `GET /api/users/me` : récupérer l’utilisateur connecté
 - `GET /api/missions/volunteer/{volunteerId}/today` : consulter le planning du jour d’un volontaire
 - `GET /api/events/public-schedule` : consulter les horaires et lieux destinés au public
+- `GET /api/notifications/me` : récupérer les notifications de l’utilisateur connecté
 
 ## Format des réponses API
 

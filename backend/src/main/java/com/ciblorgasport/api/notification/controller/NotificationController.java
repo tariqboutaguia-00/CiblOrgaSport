@@ -2,11 +2,14 @@ package com.ciblorgasport.api.notification.controller;
 
 import com.ciblorgasport.api.common.ApiResponse;
 import com.ciblorgasport.api.notification.dto.CreateNotificationRequest;
+import com.ciblorgasport.api.notification.dto.NotificationResponse;
 import com.ciblorgasport.api.notification.dto.SubscriptionRequest;
-import com.ciblorgasport.api.notification.entity.Notification;
-import com.ciblorgasport.api.notification.entity.Subscription;
+import com.ciblorgasport.api.notification.dto.SubscriptionResponse;
 import com.ciblorgasport.api.notification.service.NotificationService;
+import com.ciblorgasport.api.user.entity.User;
+import jakarta.validation.Valid;
 import java.util.List;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,23 +23,28 @@ public class NotificationController {
     }
 
     @PostMapping
-    public ApiResponse<Void> create(@RequestBody CreateNotificationRequest request) {
+    public ApiResponse<Void> create(@Valid @RequestBody CreateNotificationRequest request) {
         service.createNotification(request);
-        return ApiResponse.success("Notification sent", null);
+        return ApiResponse.success("Notification sent successfully", null);
     }
 
-    @GetMapping("/user/{userId}")
-    public ApiResponse<List<Notification>> getUser(@PathVariable Long userId) {
-        return ApiResponse.success("Notifications", service.getUserNotifications(userId));
+    @GetMapping("/me")
+    public ApiResponse<List<NotificationResponse>> getCurrentUserNotifications(Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
+        return ApiResponse.success(
+                "Notifications retrieved successfully",
+                service.getUserNotifications(currentUser.getId()));
     }
 
     @PatchMapping("/{id}/read")
-    public ApiResponse<Notification> read(@PathVariable Long id) {
-        return ApiResponse.success("Updated", service.markAsRead(id));
+    public ApiResponse<NotificationResponse> read(@PathVariable Long id) {
+        return ApiResponse.success("Notification marked as read successfully", service.markAsRead(id));
     }
 
     @PostMapping("/subscribe")
-    public ApiResponse<Subscription> subscribe(@RequestBody SubscriptionRequest request) {
-        return ApiResponse.success("Subscribed", service.subscribe(request.getUserId(), request.getType()));
+    public ApiResponse<SubscriptionResponse> subscribe(@Valid @RequestBody SubscriptionRequest request) {
+        return ApiResponse.success(
+                "Subscription created successfully",
+                service.subscribe(request.getUserId(), request.getType()));
     }
 }

@@ -440,3 +440,18 @@ Finaliser les fonctionnalités backend restantes pour les utilisateurs connecté
 
 ### Résultat
 Le backend couvre désormais les besoins principaux restants avant l’intégration du frontend
+
+## Étape 30
+
+### Objectif
+Nettoyer et professionnaliser le module notifications avant l’intégration du frontend.
+
+### Actions
+- suppression du retour direct des entités Notification et Subscription dans le controller
+- ajout des DTO NotificationResponse et SubscriptionResponse
+- suppression du champ read dans la création d’une notification
+- ajout de la récupération des notifications de l’utilisateur connecté
+- ajout du contrôle anti-duplication sur les abonnements
+
+### Résultat
+Le module notifications est maintenant plus propre, cohérent et prêt pour le frontend

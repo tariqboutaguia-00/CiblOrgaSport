@@ -1,15 +1,16 @@
 package com.ciblorgasport.api.notification.service;
 
 import com.ciblorgasport.api.notification.dto.CreateNotificationRequest;
+import com.ciblorgasport.api.notification.dto.NotificationResponse;
+import com.ciblorgasport.api.notification.dto.SubscriptionResponse;
 import com.ciblorgasport.api.notification.entity.Notification;
 import com.ciblorgasport.api.notification.entity.Subscription;
 import com.ciblorgasport.api.notification.repository.NotificationRepository;
 import com.ciblorgasport.api.notification.repository.SubscriptionRepository;
 import com.ciblorgasport.api.user.entity.User;
 import com.ciblorgasport.api.user.repository.UserRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService {
@@ -27,38 +28,66 @@ public class NotificationService {
     }
 
     public void createNotification(CreateNotificationRequest request) {
-
         List<Subscription> subscriptions = subscriptionRepository.findByType(request.getType());
 
-        for (Subscription sub : subscriptions) {
-            Notification n = new Notification();
-            n.setMessage(request.getMessage());
-            n.setType(request.getType());
-            n.setUser(sub.getUser());
-            notificationRepository.save(n);
+        for (Subscription subscription : subscriptions) {
+            Notification notification = new Notification();
+            notification.setMessage(request.getMessage());
+            notification.setType(request.getType());
+            notification.setUser(subscription.getUser());
+            notificationRepository.save(notification);
         }
     }
 
-    public List<Notification> getUserNotifications(Long userId) {
-        return notificationRepository.findByUserIdOrderByCreatedAtDesc(userId);
+    public List<NotificationResponse> getUserNotifications(Long userId) {
+        return notificationRepository.findByUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .map(this::mapToNotificationResponse)
+                .toList();
     }
 
-    public Notification markAsRead(Long id) {
-        Notification n = notificationRepository.findById(id)
+    public NotificationResponse markAsRead(Long id) {
+        Notification notification = notificationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Notification not found"));
 
-        n.setRead(true);
-        return notificationRepository.save(n);
+        notification.setRead(true);
+        Notification savedNotification = notificationRepository.save(notification);
+
+        return mapToNotificationResponse(savedNotification);
     }
 
-    public Subscription subscribe(Long userId, String type) {
+    public SubscriptionResponse subscribe(Long userId, String type) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Subscription sub = new Subscription();
-        sub.setUser(user);
-        sub.setType(type);
+        if (subscriptionRepository.existsByUserIdAndType(userId, type)) {
+            throw new RuntimeException("Subscription already exists for this user and type");
+        }
 
-        return subscriptionRepository.save(sub);
+        Subscription subscription = new Subscription();
+        subscription.setUser(user);
+        subscription.setType(type);
+
+        Subscription savedSubscription = subscriptionRepository.save(subscription);
+        return mapToSubscriptionResponse(savedSubscription);
+    }
+
+    private NotificationResponse mapToNotificationResponse(Notification notification) {
+        return new NotificationResponse(
+                notification.getId(),
+                notification.getUser().getId(),
+                notification.getUser().getEmail(),
+                notification.getType(),
+                notification.getMessage(),
+                notification.isRead(),
+                notification.getCreatedAt());
+    }
+
+    private SubscriptionResponse mapToSubscriptionResponse(Subscription subscription) {
+        return new SubscriptionResponse(
+                subscription.getId(),
+                subscription.getUser().getId(),
+                subscription.getUser().getEmail(),
+                subscription.getType());
     }
 }

@@ -49,9 +49,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/incidents").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/incidents").hasAnyRole("COMMISSIONER","ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/notifications").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/notifications").hasAnyRole("DEPLOYMENT_MANAGER","ADMIN")
-
                         .requestMatchers(HttpMethod.GET, "/api/volunteers").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/volunteers").hasRole("ADMIN")
 
@@ -72,12 +69,14 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/api/events/*/meeting-points").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/api/users/*/access").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
 
-                        .requestMatchers(HttpMethod.POST, "/api/notifications/subscribe").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/notifications/user/**").authenticated()
-
                         .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/missions/volunteer/*/today").hasAnyRole("VOLUNTEER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/events/public-schedule").authenticated()
+
+                        .requestMatchers(HttpMethod.POST, "/api/notifications").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/notifications/subscribe").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/notifications/me").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/api/notifications/*/read").authenticated()
 
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
