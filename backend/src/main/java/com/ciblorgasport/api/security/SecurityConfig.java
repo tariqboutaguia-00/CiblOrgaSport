@@ -24,6 +24,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/actuator/health").permitAll()
@@ -47,7 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/results").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/incidents").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/incidents").hasAnyRole("COMMISSIONER","ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/incidents").hasAnyRole("COMMISSIONER", "ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/volunteers").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/volunteers").hasRole("ADMIN")
@@ -55,25 +56,32 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/missions").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/missions/**").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/statistics").hasAnyRole("DEPLOYMENT_MANAGER","ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/statistics").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/api/athletes/*/charter").hasAnyRole("ATHLETE", "ADMIN")
 
-                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/withdraw").hasAnyRole("ATHLETE", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/withdraw")
+                        .hasAnyRole("ATHLETE", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/results/athlete/*").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/results/performances").authenticated()
 
-                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/compliance").hasAnyRole("COMMISSIONER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/participants/*/compliance")
+                        .hasAnyRole("COMMISSIONER", "ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/api/events/*/cancel").hasAnyRole("COMMISSIONER", "ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/reschedule").hasAnyRole("COMMISSIONER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/reschedule")
+                        .hasAnyRole("COMMISSIONER", "ADMIN")
 
-                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/meeting-points").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/users/*/access").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/events/*/meeting-points")
+                        .hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/users/*/access")
+                        .hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/users/me").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/missions/volunteer/*/today").hasAnyRole("VOLUNTEER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/events/public-schedule").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/missions/volunteer/*/today")
+                        .hasAnyRole("VOLUNTEER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/events/public-schedule").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/notifications").hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/notifications")
+                        .hasAnyRole("DEPLOYMENT_MANAGER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/notifications/subscribe").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/notifications/me").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/api/notifications/*/read").authenticated()
