@@ -215,6 +215,7 @@ Le frontend est séparé en deux applications React :
 - front-office : template TeleportHQ nettoyé et simplifié pour obtenir une base vitrine claire, professionnelle et maintenable
 - authentification JWT intégrée côté back-office (login + stockage token)
 - configuration CORS ajoutée pour permettre les appels entre le frontend local et le backend Spring Boot
+- récupération de l’utilisateur connecté via `/api/users/me` et protection des routes privées du back-office
 
 ## Statut
 

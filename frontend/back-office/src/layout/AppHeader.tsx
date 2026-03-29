@@ -1,8 +1,11 @@
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 
 const AppHeader: React.FC = () => {
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -10,6 +13,11 @@ const AppHeader: React.FC = () => {
     } else {
       toggleMobileSidebar();
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -35,19 +43,21 @@ const AppHeader: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/notifications"
+          <div className="hidden text-right sm:block">
+            <p className="text-sm font-semibold text-gray-800 dark:text-white">
+              {user?.email || "Utilisateur"}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {user?.role || "ROLE_INCONNU"}
+            </p>
+          </div>
+
+          <button
+            onClick={handleLogout}
             className="rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
           >
-            Notifications
-          </Link>
-
-          <Link
-            to="/profile"
-            className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
-          >
-            Mon profil
-          </Link>
+            Déconnexion
+          </button>
         </div>
       </div>
     </header>

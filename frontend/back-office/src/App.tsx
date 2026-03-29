@@ -11,6 +11,7 @@ import Missions from "./pages/Missions";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import { ScrollToTop } from "./components/common/ScrollToTop";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 export default function App() {
   return (
@@ -19,7 +20,13 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<SignIn />} />
 
-        <Route element={<AppLayout />}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/" element={<Home />} />
           <Route path="/competitions" element={<Competitions />} />
           <Route path="/events" element={<Events />} />
