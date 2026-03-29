@@ -213,6 +213,7 @@ Le frontend est séparé en deux applications React :
 #### État actuel
 - back-office : template admin nettoyé et préparé pour l’intégration métier
 - front-office : template TeleportHQ nettoyé et simplifié pour obtenir une base vitrine claire, professionnelle et maintenable
+- authentification JWT intégrée côté back-office (login + stockage token)
 
 ## Statut
 
