@@ -216,6 +216,7 @@ Le frontend est séparé en deux applications React :
 - authentification JWT intégrée côté back-office (login + stockage token)
 - configuration CORS ajoutée pour permettre les appels entre le frontend local et le backend Spring Boot
 - récupération de l’utilisateur connecté via `/api/users/me` et protection des routes privées du back-office
+- dashboard et navigation adaptés selon le rôle de l’utilisateur connecté
 
 ## Statut
 

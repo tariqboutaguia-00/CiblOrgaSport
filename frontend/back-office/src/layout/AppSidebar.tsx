@@ -1,11 +1,20 @@
 import { Link, useLocation } from "react-router";
-import { GridIcon, ListIcon, TableIcon, UserCircleIcon, TaskIcon, MailIcon } from "../icons";
+import {
+  GridIcon,
+  ListIcon,
+  TableIcon,
+  UserCircleIcon,
+  TaskIcon,
+  MailIcon,
+} from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 
 type MenuItem = {
   label: string;
   path: string;
   icon: React.ReactNode;
+  roles: string[];
 };
 
 const menuItems: MenuItem[] = [
@@ -13,49 +22,90 @@ const menuItems: MenuItem[] = [
     label: "Dashboard",
     path: "/",
     icon: <GridIcon />,
+    roles: [
+      "ADMIN",
+      "ATHLETE",
+      "VOLUNTEER",
+      "SPECTATOR",
+      "DEPLOYMENT_MANAGER",
+      "COMMISSIONER",
+    ],
   },
   {
     label: "Compétitions",
     path: "/competitions",
     icon: <ListIcon />,
+    roles: ["ADMIN", "DEPLOYMENT_MANAGER", "COMMISSIONER", "SPECTATOR"],
   },
   {
     label: "Épreuves",
     path: "/events",
     icon: <TableIcon />,
+    roles: [
+      "ADMIN",
+      "ATHLETE",
+      "VOLUNTEER",
+      "SPECTATOR",
+      "DEPLOYMENT_MANAGER",
+      "COMMISSIONER",
+    ],
   },
   {
     label: "Participants",
     path: "/participants",
     icon: <UserCircleIcon />,
+    roles: ["ADMIN", "ATHLETE", "COMMISSIONER"],
   },
   {
     label: "Résultats",
     path: "/results",
     icon: <TableIcon />,
+    roles: ["ADMIN", "ATHLETE", "SPECTATOR", "COMMISSIONER"],
   },
   {
     label: "Missions",
     path: "/missions",
     icon: <TaskIcon />,
+    roles: ["ADMIN", "VOLUNTEER", "DEPLOYMENT_MANAGER"],
   },
   {
     label: "Notifications",
     path: "/notifications",
     icon: <MailIcon />,
+    roles: [
+      "ADMIN",
+      "ATHLETE",
+      "VOLUNTEER",
+      "SPECTATOR",
+      "DEPLOYMENT_MANAGER",
+      "COMMISSIONER",
+    ],
   },
   {
     label: "Profil",
     path: "/profile",
     icon: <UserCircleIcon />,
+    roles: [
+      "ADMIN",
+      "ATHLETE",
+      "VOLUNTEER",
+      "SPECTATOR",
+      "DEPLOYMENT_MANAGER",
+      "COMMISSIONER",
+    ],
   },
 ];
 
 const AppSidebar: React.FC = () => {
   const location = useLocation();
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const { user } = useAuth();
 
   const expanded = isExpanded || isHovered;
+
+  const filteredMenuItems = menuItems.filter((item) =>
+    item.roles.includes(user?.role || "")
+  );
 
   return (
     <aside
@@ -67,7 +117,7 @@ const AppSidebar: React.FC = () => {
     >
       <div className="flex h-[73px] items-center border-b border-gray-200 px-4 dark:border-gray-800">
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500 text-white font-bold">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500 font-bold text-white">
             C
           </div>
           {expanded && (
@@ -93,7 +143,7 @@ const AppSidebar: React.FC = () => {
         </p>
 
         <nav className="flex flex-col gap-2">
-          {menuItems.map((item) => {
+          {filteredMenuItems.map((item) => {
             const active = location.pathname === item.path;
 
             return (
@@ -121,10 +171,10 @@ const AppSidebar: React.FC = () => {
         {expanded ? (
           <div className="rounded-xl bg-gray-50 p-4 dark:bg-gray-800">
             <p className="text-sm font-semibold text-gray-800 dark:text-white">
-              Base propre prête
+              Menu adapté au rôle
             </p>
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              Prochaine étape : authentification JWT et connexion au backend.
+              La navigation affichée dépend de l’utilisateur connecté.
             </p>
           </div>
         ) : (
