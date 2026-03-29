@@ -11,3 +11,10 @@ export const markNotificationAsRead = async (
 ): Promise<void> => {
     await api.patch(`/notifications/${notificationId}/read`);
 };
+
+export const createNotification = async (data: {
+    type: string;
+    message: string;
+}): Promise<void> => {
+    await api.post("/notifications", data);
+};

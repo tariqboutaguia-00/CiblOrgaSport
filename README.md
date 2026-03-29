@@ -223,6 +223,7 @@ Le frontend est séparé en deux applications React :
 - affichage réel des résultats dans le back-office
 - affichage réel des missions dans le back-office
 - affichage des notifications de l’utilisateur connecté avec marquage comme lu
+- création de notifications depuis le back-office
 
 ## Statut
 
