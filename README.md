@@ -225,6 +225,7 @@ Le frontend est séparé en deux applications React :
 - affichage des notifications de l’utilisateur connecté avec marquage comme lu
 - création de notifications depuis le back-office
 - page profil affichant les informations de l’utilisateur connecté
+- consultation du planning du jour d’un volontaire via son identifiant
 
 ## Statut
 

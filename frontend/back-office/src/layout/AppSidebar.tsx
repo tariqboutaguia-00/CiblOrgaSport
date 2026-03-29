@@ -69,6 +69,12 @@ const menuItems: MenuItem[] = [
     roles: ["ADMIN", "VOLUNTEER", "DEPLOYMENT_MANAGER"],
   },
   {
+    label: "Planning volontaire",
+    path: "/volunteer-planning",
+    icon: <TaskIcon />,
+    roles: ["ADMIN", "VOLUNTEER"],
+  },
+  {
     label: "Notifications",
     path: "/notifications",
     icon: <MailIcon />,
@@ -135,9 +141,8 @@ const AppSidebar: React.FC = () => {
 
       <div className="flex-1 overflow-y-auto px-3 py-4">
         <p
-          className={`mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400 ${
-            expanded ? "block" : "hidden"
-          }`}
+          className={`mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400 ${expanded ? "block" : "hidden"
+            }`}
         >
           Navigation
         </p>
@@ -151,10 +156,9 @@ const AppSidebar: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                  ${
-                    active
-                      ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300"
-                      : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  ${active
+                    ? "bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300"
+                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                   }
                   ${expanded ? "justify-start" : "justify-center"}
                 `}
