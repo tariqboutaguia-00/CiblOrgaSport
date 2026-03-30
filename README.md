@@ -227,6 +227,7 @@ Le frontend est séparé en deux applications React :
 - page profil affichant les informations de l’utilisateur connecté
 - consultation du planning du jour d’un volontaire via son identifiant
 - affichage des horaires publics dans le front-office via l’endpoint `/api/events/public-schedule`
+- section notifications du front-office alignée avec le backend via redirection vers le back-office pour l’abonnement
 
 ## Statut
 

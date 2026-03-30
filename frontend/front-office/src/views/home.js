@@ -5,6 +5,8 @@ import Footer from '../components/footer';
 import { getPublicSchedule } from '../services/public-schedule.service';
 import './home.css';
 
+const BACK_OFFICE_LOGIN_URL = 'http://localhost:5173/login';
+
 function formatValue(value) {
   if (value === null || value === undefined || value === '') {
     return '-';
@@ -307,36 +309,47 @@ const Home = () => {
           <div className="container subscribe-grid">
             <div>
               <p className="section-tag">Notifications</p>
-              <h2>Restez informé des prochaines compétitions</h2>
+              <h2>Recevoir les informations importantes</h2>
               <p className="section-description">
-                Les visiteurs pourront s’abonner pour recevoir les principales
-                notifications sportives.
+                Les abonnements aux notifications sont liés à un compte
+                utilisateur. Pour recevoir les alertes sportives, sécurité ou fan
+                zone, connectez-vous à l’espace de gestion.
               </p>
             </div>
 
-            <form className="subscribe-form">
-              <div className="form-group">
-                <label htmlFor="email">Adresse email</label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="exemple@ciblorgasport.com"
-                />
+            <div className="subscribe-panel">
+              <div className="subscribe-info-list">
+                <div className="subscribe-info-item">
+                  <span className="subscribe-info-title">Types disponibles</span>
+                  <span className="subscribe-info-value">
+                    Sport, Sécurité, Fan zone
+                  </span>
+                </div>
+
+                <div className="subscribe-info-item">
+                  <span className="subscribe-info-title">Accès</span>
+                  <span className="subscribe-info-value">
+                    Compte utilisateur requis
+                  </span>
+                </div>
+
+                <div className="subscribe-info-item">
+                  <span className="subscribe-info-title">Gestion</span>
+                  <span className="subscribe-info-value">
+                    Depuis le back-office
+                  </span>
+                </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="type">Type d’abonnement</label>
-                <select id="type">
-                  <option>Sport</option>
-                  <option>Sécurité</option>
-                  <option>Fan zone</option>
-                </select>
-              </div>
-
-              <button type="button" className="btn btn-primary">
-                S’abonner
-              </button>
-            </form>
+              <a
+                href={BACK_OFFICE_LOGIN_URL}
+                className="btn btn-primary subscribe-cta"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Se connecter pour s’abonner
+              </a>
+            </div>
           </div>
         </section>
       </main>

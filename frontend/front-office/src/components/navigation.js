@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navigation.css';
 
+const BACK_OFFICE_LOGIN_URL = 'http://localhost:5173/login';
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,7 +28,14 @@ const Navigation = () => {
         </nav>
 
         <div className="nav-actions">
-          <button className="btn btn-secondary">Connexion</button>
+          <a
+            href={BACK_OFFICE_LOGIN_URL}
+            className="btn btn-secondary"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Connexion
+          </a>
         </div>
 
         <button
