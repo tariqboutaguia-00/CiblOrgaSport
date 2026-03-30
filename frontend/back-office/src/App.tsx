@@ -11,6 +11,7 @@ import Missions from "./pages/Missions";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import VolunteerPlanning from "./pages/VolunteerPlanning";
+import Statistics from "./pages/Statistics";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/volunteer-planning" element={<VolunteerPlanning />} />
+          <Route path="/statistics" element={<Statistics />} />
         </Route>
 
         <Route path="/signin" element={<Navigate to="/login" replace />} />

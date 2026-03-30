@@ -32,6 +32,12 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
+    label: "Statistiques",
+    path: "/statistics",
+    icon: <GridIcon />,
+    roles: ["ADMIN", "DEPLOYMENT_MANAGER"],
+  },
+  {
     label: "Compétitions",
     path: "/competitions",
     icon: <ListIcon />,
