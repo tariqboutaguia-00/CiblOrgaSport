@@ -180,6 +180,15 @@ L’application initialise automatiquement des utilisateurs de test au démarrag
 ```text
 Email : admin@ciblorgasport.com
 Mot de passe : admin123
+
+Email : tariq@ciblorgasport.com
+Mot de passe : password
+
+Email : sara@ciblorgasport.com
+Mot de passe : password
+
+Lien Front-Office:https://cibl-orga-sport.vercel.app/
+Lien Back-Office:https://cibl-orga-sport-5iyd.vercel.app/
 ```
 ## Authentification
 

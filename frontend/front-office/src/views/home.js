@@ -5,7 +5,7 @@ import Footer from '../components/footer';
 import { getPublicSchedule } from '../services/public-schedule.service';
 import './home.css';
 
-const BACK_OFFICE_LOGIN_URL = 'https://cibl-orga-sport-5iyd.vercel.app/login';
+const BACK_OFFICE_LOGIN_URL = 'https://cibl-orga-sport-5iyd.vercel.app';
 
 function formatValue(value) {
   if (value === null || value === undefined || value === '') {
