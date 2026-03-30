@@ -19,7 +19,7 @@ public class CorsConfig {
                 "http://localhost:5173", // back-office
                 "http://localhost:3000", // front-office
                 "https://cibl-orga-sport.vercel.app",
-                "https://cibl-orga-sport-6nfd.vercel.app"
+                "https://cibl-orga-sport-5iyd.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
