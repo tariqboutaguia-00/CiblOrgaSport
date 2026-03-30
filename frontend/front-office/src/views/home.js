@@ -1,10 +1,115 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
+import { getPublicSchedule } from '../services/public-schedule.service';
 import './home.css';
 
+function formatValue(value) {
+  if (value === null || value === undefined || value === '') {
+    return '-';
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      return '-';
+    }
+
+    const parsedDate = new Date(trimmed);
+    if (!Number.isNaN(parsedDate.getTime()) && trimmed.includes('-')) {
+      return parsedDate.toLocaleString('fr-FR');
+    }
+
+    return trimmed;
+  }
+
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return String(value);
+  }
+
+  if (Array.isArray(value)) {
+    return value.length > 0 ? `${value.length} élément(s)` : '-';
+  }
+
+  if (typeof value === 'object') {
+    if ('name' in value && typeof value.name === 'string') {
+      return value.name;
+    }
+
+    if ('title' in value && typeof value.title === 'string') {
+      return value.title;
+    }
+
+    if ('location' in value && typeof value.location === 'string') {
+      return value.location;
+    }
+
+    if ('id' in value && value.id !== null && value.id !== undefined) {
+      return `#${String(value.id)}`;
+    }
+
+    return 'Objet lié';
+  }
+
+  return String(value);
+}
+
+function getCardTitle(item) {
+  return (
+    item.name ||
+    item.title ||
+    item.eventName ||
+    item.competitionName ||
+    'Épreuve publique'
+  );
+}
+
+function getCardLocation(item) {
+  return (
+    item.location ||
+    item.place ||
+    item.venue ||
+    item.pool ||
+    'Lieu non renseigné'
+  );
+}
+
+function getCardDate(item) {
+  return (
+    formatValue(item.startDate) ||
+    formatValue(item.date) ||
+    formatValue(item.time) ||
+    '-'
+  );
+}
+
 const Home = () => {
+  const [publicSchedule, setPublicSchedule] = useState([]);
+  const [isLoadingSchedule, setIsLoadingSchedule] = useState(true);
+  const [scheduleError, setScheduleError] = useState('');
+
+  useEffect(() => {
+    const fetchPublicSchedule = async () => {
+      try {
+        setIsLoadingSchedule(true);
+        setScheduleError('');
+
+        const data = await getPublicSchedule();
+        setPublicSchedule(Array.isArray(data) ? data : []);
+      } catch (error) {
+        setScheduleError(
+          'Impossible de charger les horaires publics pour le moment.'
+        );
+      } finally {
+        setIsLoadingSchedule(false);
+      }
+    };
+
+    fetchPublicSchedule();
+  }, []);
+
   return (
     <div className="home-page">
       <Navigation />
@@ -145,35 +250,56 @@ const Home = () => {
           <div className="container">
             <div className="section-header">
               <p className="section-tag">Horaires publics</p>
-              <h2>Exemples d’épreuves accessibles au public</h2>
+              <h2>Programme public des épreuves</h2>
               <p className="section-description">
-                Cette zone sera reliée au backend plus tard avec l’endpoint
-                public des horaires.
+                Cette section affiche les horaires et lieux accessibles au public
+                depuis le backend.
               </p>
             </div>
 
-            <div className="schedule-grid">
-              <article className="schedule-card">
-                <p className="schedule-date">10 avril 2026</p>
-                <h3>100m nage libre</h3>
-                <p>Piscine Olympique de Lille</p>
-                <span>09:00</span>
-              </article>
+            {isLoadingSchedule && (
+              <div className="status-card">
+                Chargement des horaires publics...
+              </div>
+            )}
 
-              <article className="schedule-card">
-                <p className="schedule-date">10 avril 2026</p>
-                <h3>200m brasse</h3>
-                <p>Piscine Olympique de Lille</p>
-                <span>11:00</span>
-              </article>
+            {!isLoadingSchedule && scheduleError && (
+              <div className="status-card status-card-error">
+                {scheduleError}
+              </div>
+            )}
 
-              <article className="schedule-card">
-                <p className="schedule-date">11 avril 2026</p>
-                <h3>Relais 4x100</h3>
-                <p>Centre Aquatique Métropolitain</p>
-                <span>14:30</span>
-              </article>
-            </div>
+            {!isLoadingSchedule &&
+              !scheduleError &&
+              publicSchedule.length === 0 && (
+                <div className="status-card">
+                  Aucun horaire public n’est disponible pour le moment.
+                </div>
+              )}
+
+            {!isLoadingSchedule &&
+              !scheduleError &&
+              publicSchedule.length > 0 && (
+                <div className="schedule-grid">
+                  {publicSchedule.map((item, index) => (
+                    <article
+                      className="schedule-card"
+                      key={String(item.id || index)}
+                    >
+                      <p className="schedule-date">{getCardDate(item)}</p>
+                      <h3>{getCardTitle(item)}</h3>
+                      <p>{getCardLocation(item)}</p>
+                      <span>
+                        {item.status
+                          ? formatValue(item.status)
+                          : item.time
+                            ? formatValue(item.time)
+                            : 'Programme public'}
+                      </span>
+                    </article>
+                  ))}
+                </div>
+              )}
           </div>
         </section>
 
